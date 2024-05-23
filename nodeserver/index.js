@@ -1,13 +1,13 @@
 // // node server which will handle socket io connections
-const express = require("express");
-const path = require("path");
+// const express = require("express");
+// const path = require("path");
 // const cors = require("cors");
 // const http = require("http");
 // const socketIo = require("socket.io");
-const io = require("socket.io")(8000, { cors: { origin: "*" } });
+// const io = require("socket.io")(10000, { cors: { origin: "*" } });
 
-const app = express();
-app.use(express.static(path.join(__dirname, "../")));
+// const app = express();
+// app.use(express.static(path.join(__dirname, "../")));
 
 // const server = http.createServer(app);
 // const io = socketIo(server, {
@@ -24,6 +24,23 @@ app.use(express.static(path.join(__dirname, "../")));
 //     origin: "http://localhost:5500", // Allowing requests from this origin
 //   })
 // );
+
+const express = require("express");
+const path = require("path");
+const http = require("http");
+const { Server } = require("socket.io");
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
+
+const port = process.env.PORT || 8000;
+
+app.use(express.static(path.join(__dirname, "../")));
 
 const users = {};
 
