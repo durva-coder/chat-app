@@ -38,7 +38,7 @@ const io = new Server(server, {
   },
 });
 
-const port = 10000;
+const port = process.env.PORT || 10000;
 
 app.use(express.static(path.join(__dirname, "../")));
 
