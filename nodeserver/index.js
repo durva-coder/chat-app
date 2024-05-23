@@ -38,7 +38,7 @@ const io = new Server(server, {
   },
 });
 
-const port = process.env.PORT || 10000;
+const port = 10000;
 
 app.use(express.static(path.join(__dirname, "../")));
 
@@ -66,6 +66,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// server.listen(8000, () => {
-//   console.log("Server is running on port 8000");
-// });
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
